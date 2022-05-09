@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema(
     isAdmin: { type: Boolean, required: true, default: false },
     isActive: { type: String, required: true, default: "inactive" },
     isVerify: { type: Boolean, required: true, default: false },
+    lastPost: { type: Date, default: null },
     letterId: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Letter", default: null },
     ],

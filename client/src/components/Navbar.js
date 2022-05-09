@@ -95,7 +95,9 @@ const Navbar = ({ other, profileChanged }) => {
               <StyledLink to='/letters'>
                 <ListItem> Letters</ListItem>
               </StyledLink>
-              <ListItem> About</ListItem>
+              <StyledLink to='/about'>
+                <ListItem> About</ListItem>
+              </StyledLink>
             </List>
           </MiddlePart>
           <RightPart>

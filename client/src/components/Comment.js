@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Comment = ({ item }) => {
-  console.log(item.userId.image);
   return (
     <CommentWrapper>
       <ProfPict

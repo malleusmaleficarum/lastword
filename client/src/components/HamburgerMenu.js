@@ -12,7 +12,7 @@ const HamburgerMenu = ({ hamburger, handleLogout }) => {
         <StyledLink to='/letters'>
           <ListItem>Letters</ListItem>
         </StyledLink>
-        <StyledLink to='/'>
+        <StyledLink to='/about'>
           <ListItem>About</ListItem>
         </StyledLink>
 

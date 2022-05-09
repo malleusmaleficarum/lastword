@@ -15,9 +15,15 @@ router.post("/", verifySession, async (req, res) => {
     isAnonymous: req.body.isAnonymous,
   });
   try {
+    const user = await User.findById(newLetter.author);
+    const lastPostDate = new Date(user.lastPost);
+    const cooldownTime = lastPostDate.setDate(lastPostDate.getDate() + 7);
+    if (cooldownTime > new Date())
+      return res.status(400).json("youre still in cooldown");
     const savedLetter = await newLetter.save();
     await User.findByIdAndUpdate(savedLetter.author, {
       $push: { letterId: savedLetter._id },
+      lastPost: new Date(),
     });
     res.status(200).json(savedLetter);
   } catch (err) {

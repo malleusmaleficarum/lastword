@@ -11,6 +11,7 @@ import ChangePassword from "./pages/ChangePassword";
 import Profile from "./pages/Profile";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import About from "./pages/About";
 
 function App() {
   const user = useSelector((state) => state.auth.user);
@@ -41,6 +42,7 @@ function App() {
       <Route path='/forgotPassword' element={<ResetPassword />} />
       <Route path='/resetPassword/' element={<ChangePassword />} />
       <Route path='/profile/:userid' element={<Profile />} />
+      <Route path='/about' element={<About />} />
       <Route path='*' element={<NotFound404 />} />
     </Routes>
   );

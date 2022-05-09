@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Modal from "../components/Modal";
 import axios from "../misc/axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,6 +29,7 @@ const Write = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const author = useSelector((state) => state.auth.user);
+  const [isCooldown, setIsCooldown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [warning, setWarning] = useState(false);
@@ -67,6 +68,21 @@ const Write = () => {
     }
   };
 
+  //useEffect check lastPost date
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const user = await axios.get(`/user/${author}`);
+        const lastPostDate = new Date(user.data.lastPost);
+        const cooldownTime = lastPostDate.setDate(lastPostDate.getDate() + 7);
+        cooldownTime > new Date() ? setIsCooldown(true) : setIsCooldown(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, [author]);
+
   return (
     <>
       <Navbar other={true} />
@@ -74,6 +90,18 @@ const Write = () => {
         <Wrapper>
           <WriteContainer>
             <Title>WRITE SOMETHING</Title>
+
+            {isCooldown && (
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontStyle: "italic",
+                  textAlign: "center",
+                }}
+              >
+                Cannot post another letter, You're still in cooldown
+              </p>
+            )}
             {warning && (
               <Warning error={isError}>
                 {isError
@@ -88,6 +116,7 @@ const Write = () => {
                 placeholder='Add your caption'
                 type='text'
                 autoComplete='off'
+                disabled={isCooldown}
                 {...register("caption")}
               />
               <Par>{errors.caption?.message}</Par>
@@ -96,6 +125,7 @@ const Write = () => {
                 <InputArea
                   placeholder='Add your last word'
                   autoComplete='off'
+                  disabled={isCooldown}
                   {...register("text")}
                 />
 
@@ -146,7 +176,9 @@ const Write = () => {
                   Do you want to post this letter as <b>anonymous</b> ?
                 </label>
               </CheckboxWrapper>
-              <Button type='submit'>POST</Button>
+              <Button type='submit' disabled={isCooldown}>
+                POST
+              </Button>
             </FormContainer>
             <Modal
               show={showModal}
