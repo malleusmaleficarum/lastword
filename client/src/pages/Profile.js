@@ -66,18 +66,6 @@ const Profile = () => {
         }
       });
     });
-    // setLoading(true);
-    // setUser(data);
-    // console.log(data);
-    // try {
-    //   setError(false);
-    // } catch (error) {
-    //   console.log(error);
-    //   setError(true);
-    // } finally {
-    //   setWarning(true);
-    //   setLoading(false);
-    // }
   };
 
   const handleFileClick = () => {
