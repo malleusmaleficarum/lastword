@@ -1,0 +1,24 @@
+require('crypto').randomBytes(64).toString('hex') --- generate KEY
+
+---JWT implementation---
+CREATE JWT = jwt.sign     VERIFY JWT = jwt.verify
+-after login process, create accesstoken and refreshtoken
+-save refreshToken in db
+-save refreshToken in cookie (httpOnly) and send res accessToken to user
+**REFRESH TOKEN**
+-take refreshToken from cookie
+-if exist compare with refreshToken in db
+-if refreshToken valid, then verify refreshToken
+-after verify refreshToken, create new AccessToken from that
+-res user with new accessToken
+*hint: decoded = payload when creating token
+**LOGOUT**
+-take refreshToken from cookie
+-find user with that user token
+-update refreshToken in db to null
+**VERIFY BASED ON ROLE**
+-input role/isAdmin to accessToken PAYLOAD
+-check every request if those roles is allowed or not
+
+mongodb
+-insert unique id on sort if using sort with limit
