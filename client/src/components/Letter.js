@@ -78,6 +78,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-size: cover;
 `;
 
 const Caption = styled.h2`

@@ -160,7 +160,7 @@ router.post("/login", async (req, res) => {
     //CHECK IF USER EXIST
     if (!user) return res.status(401).json("Wrong data");
     if (!user.isVerify)
-      return res.status(401).json("Please verify your account");
+      return res.status(403).json("Please verify your account");
     const hashedPassword = CryptoJS.AES.decrypt(
       user.password,
       process.env.AES_KEY

@@ -2,8 +2,6 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import google from "../assets/google-logo.png";
-import fb from "../assets/fb-logo.png";
 import { useState } from "react";
 import axios from "../misc/axios";
 
@@ -118,11 +116,6 @@ const Register = () => {
                 </Button>
               </Form2>
             </Formik>
-            <Other>Or Register With</Other>
-            <OtherContainer>
-              <OtherLogin src={google} />
-              <OtherLogin src={fb} />
-            </OtherContainer>
             <Desc>
               By registering to our website, you agree with our{" "}
               <a href='/'>TERMS</a> , <a href='/'>PRIVACY & POLICY</a>
@@ -208,36 +201,6 @@ const Button = styled.button`
     color: white;
     background-color: gray;
     cursor: not-allowed;
-  }
-`;
-
-const Other = styled.span`
-  font-size: 12px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #f0f0f0;
-`;
-
-const OtherContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-`;
-
-const OtherLogin = styled.img`
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-right: 10px;
-  object-fit: cover;
-
-  &:hover {
-    opacity: 70%;
   }
 `;
 

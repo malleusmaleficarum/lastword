@@ -7,12 +7,10 @@ const Hero = () => {
     <Container>
       <Image src={heroImage} alt='image' />
       <InfoWrapper>
-        <Heading1>
-          LOREM IPSUM DOLOR SIT AMAT, CONSECTETUR ADIPISCING ELIT
-        </Heading1>
+        <Heading1>EVERYONE HAS THEIR OWN STORY TO TELL</Heading1>
         <Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          No matter if it's about hope, love, wisdom, or maybe pain, just write
+          some letters in this app to express what you feel inside.
         </Body>
         <StyledLink to='/letters'>
           <Button>DISCOVER →</Button>

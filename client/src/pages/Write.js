@@ -13,7 +13,7 @@ const schema = Yup.object().shape({
     .required("*Please enter caption field")
     .min(5, "*Min 5 Characters")
     .matches(/^[a-zA-Z ]*$/, "*Only alphabets are allowed for this field"),
-  text: Yup.string().required("*Please enter text field").min(10).max(500),
+  text: Yup.string().required("*Please enter text field").min(10).max(1000),
   paper: Yup.string()
     .required("*Please choose 1 paper")
     .typeError("*Please choose 1 paper"),

@@ -39,7 +39,10 @@ function App() {
         }
       />
       <Route path='/user/:id/verify/:token' element={<EmailVerify />} />
-      <Route path='/forgotPassword' element={<ResetPassword />} />
+      <Route
+        path='/forgotPassword'
+        element={!user ? <ResetPassword /> : <Navigate to='/' />}
+      />
       <Route path='/resetPassword/' element={<ChangePassword />} />
       <Route path='/profile/:userid' element={<Profile />} />
       <Route path='/about' element={<About />} />

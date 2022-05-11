@@ -11,7 +11,7 @@ const About = () => {
           <AboutContainer>
             <Title>About</Title>
 
-            <Caption>Neque porro quisquam est qui dolorem ipsum quia</Caption>
+            <Caption>Who we are:</Caption>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
               vulputate convallis consequat. Fusce vehicula lacus sed finibus
@@ -20,15 +20,13 @@ const About = () => {
               vitae commodo tempus. Class aptent taciti sociosqu ad litora
               torquent per conubia nostra, per inceptos.
             </Text>
-            <Caption>Neque porro quisquam est qui</Caption>
+            <Caption>Our philosopy:</Caption>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
               vulputate convallis consequat. Fusce vehicula lacus sed finibus
               tempus. Nullam scelerisque purus ac facilisis sagittis.
             </Text>
-            <Caption>
-              Nunc et mollis purus. Integer mattis felis vitae commodo
-            </Caption>
+            <Caption>Terms, Pivacy, and Policy:</Caption>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse ac purus sapien. Vestibulum id sapien sit amet nisi
@@ -42,6 +40,11 @@ const About = () => {
               felis ipsum accumsan nibh, ut consequat nulla ligula a ante. Sed
               semper nisi ac lacinia sagittis. Mauris at faucibus ipsum. Nullam
               et elit placerat, vehicula.
+            </Text>
+            <Caption>Contacts:</Caption>
+            <Text>
+              Email: <br />
+              Phone:
             </Text>
           </AboutContainer>
         </Wrapper>
