@@ -66,7 +66,7 @@ const Container = styled.div`
   -moz-box-shadow: -1px 0px 16px -6px rgba(0, 0, 0, 0.75);
 
   @media only screen and (max-width: 420px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 
@@ -85,8 +85,8 @@ const Caption = styled.h2`
   margin: auto 40px;
   font-family: "Oswald";
   font-size: 30px;
-
   text-align: center;
+
   @media only screen and (max-width: 820px) {
     font-size: 26px;
   }
@@ -95,14 +95,8 @@ const Caption = styled.h2`
     font-size: 22px;
   }
 
-  overflow-wrap: break-word;
+  //overflow-wrap: break-word;
 `;
-
-// const Desc = styled.span`
-//   font-family: "Cardo";
-//   font-size: 16px;
-//   letter-spacing: 0.5px;
-// `;
 
 const InfoContainer = styled.div`
   margin-top: 30px;

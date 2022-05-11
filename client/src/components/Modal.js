@@ -12,7 +12,7 @@ const Modal = ({ show, close, handleData, data, loading }) => {
         </Close>
         <Title>Your Post Almost Ready</Title>
         <Desc>
-          Reminder: You can only post 1 letter a month. After you post this
+          Reminder: You can only post 1 letter a week. After you post this
           letter you will need to wait for a month to make another letter. If
           you are agree, please click OK
         </Desc>

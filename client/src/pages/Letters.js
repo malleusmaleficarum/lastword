@@ -178,9 +178,16 @@ const ContentContainer = styled.div`
   width: 60%;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #f0f0f0;
-  border-left: 1px solid #f0f0f0;
+  border: 1px solid #f0f0f0;
   background-color: white;
+
+  @media only screen and (max-width: 820px) {
+    width: 70%;
+  }
+
+  @media only screen and (max-width: 420px) {
+    width: 80%;
+  }
 `;
 
 const TopPart = styled.div`
@@ -239,15 +246,5 @@ const ButtonFilter = styled.button`
     font-size: 9px;
   }
 `;
-
-// const StyledLink = styled(Link)`
-//   text-decoration: none;
-//   &:focus,
-//   &:visited,
-//   &:link,
-//   &:active {
-//     text-decoration: none;
-//   }
-// `;
 
 export default Letters;
