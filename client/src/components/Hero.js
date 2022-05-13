@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import heroImage from "../assets/hero.png";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
     <Container>
-      <Image src={heroImage} alt='image' />
+      <Image
+        src='https://firebasestorage.googleapis.com/v0/b/lastword-849c6.appspot.com/o/misc%2Fhero.webp?alt=media&token=6e9a11cc-c1fe-48cb-afef-ab17b82e8733'
+        alt='image'
+      />
       <InfoWrapper>
         <Heading1>EVERYONE HAS THEIR OWN STORY TO TELL</Heading1>
         <Body>

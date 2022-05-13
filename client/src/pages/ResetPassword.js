@@ -68,6 +68,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  @media only screen and (max-width: 820px) {
+    width: 80%;
+  }
 `;
 
 const Title = styled.h2`
