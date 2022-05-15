@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 
 const SingleLetter = () => {
   const user = useSelector((state) => state.auth.user);
+  const [ready, setReady] = useState(false);
   const [isComment, setIsComment] = useState(false);
   const [isLike, setIsLike] = useState(false);
   const [misc, setMisc] = useState(false);
@@ -98,6 +99,7 @@ const SingleLetter = () => {
       try {
         const res = await axios.get(`/letter/${letterid}`);
         setLetter(res.data);
+        setReady(true);
       } catch (error) {
         console.log(error);
       }
@@ -166,108 +168,113 @@ const SingleLetter = () => {
     <>
       <Navbar other={true} />
       <Container>
-        <Wrapper>
-          <LetterContainer>
-            <LetterContent style={{ backgroundImage: `url(${letter.image})` }}>
-              <Caption>{letter.caption}</Caption>
-              <Desc>{letter.bodyDesc}</Desc>
-              <Info>
-                <p style={{ fontSize: "12px" }}>Sincerely,</p>
-                <Author>
-                  {letter.isAnonymous ? "Anonymous" : letter.author?.fullname}
-                </Author>
-                <PostedDate>
-                  {new Date(letter.createdAt).toLocaleDateString("en-US", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </PostedDate>
-              </Info>
-            </LetterContent>
-            <ActionWrapper>
-              <LeftAction>
-                <Button onClick={handleLike} like={isLike} disabled={!user}>
-                  {isLike ? (
-                    <FavoriteOutlinedIcon fontSize='inherit' />
-                  ) : (
-                    "Like"
-                  )}
-                </Button>
-                <Status>
-                  {totalLike} Likes, {totalComment} Comments
-                </Status>
-              </LeftAction>
-              <RightAction>
-                <Button onClick={() => setMisc(!misc)}>
-                  <MoreHorizOutlinedIcon fontSize='inherit' />
-                </Button>
+        {ready && (
+          <Wrapper>
+            <LetterContainer>
+              <LetterContent
+                style={{ backgroundImage: `url(${letter.image})` }}
+              >
+                <Caption>{letter.caption}</Caption>
+                <Desc>{letter.bodyDesc}</Desc>
+                <Info>
+                  <p style={{ fontSize: "12px" }}>Sincerely,</p>
+                  <Author>
+                    {letter.isAnonymous ? "Anonymous" : letter.author?.fullname}
+                  </Author>
+                  <PostedDate>
+                    {new Date(letter.createdAt).toLocaleDateString("en-US", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </PostedDate>
+                </Info>
+              </LetterContent>
+              <ActionWrapper>
+                <LeftAction>
+                  <Button onClick={handleLike} like={isLike} disabled={!user}>
+                    {isLike ? (
+                      <FavoriteOutlinedIcon fontSize='inherit' />
+                    ) : (
+                      "Like"
+                    )}
+                  </Button>
+                  <Status>
+                    {totalLike} Likes, {totalComment} Comments
+                  </Status>
+                </LeftAction>
+                <RightAction>
+                  <Button onClick={() => setMisc(!misc)}>
+                    <MoreHorizOutlinedIcon fontSize='inherit' />
+                  </Button>
 
-                <MiscDiv ref={ref} misc={misc}>
-                  <p
-                    style={{ cursor: user ? "pointer" : "not-allowed" }}
-                    onClick={() => user && setShowReport(true)}
-                  >
-                    Report
+                  <MiscDiv ref={ref} misc={misc}>
+                    <p
+                      style={{ cursor: user ? "pointer" : "not-allowed" }}
+                      onClick={() => user && setShowReport(true)}
+                    >
+                      Report
+                    </p>
+                  </MiscDiv>
+                </RightAction>
+              </ActionWrapper>
+
+              {user && (
+                <TextComment
+                  placeholder='Add your comment here...'
+                  onFocus={() => {
+                    setIsComment(true);
+                  }}
+                  isComment={isComment}
+                  value={commentPost}
+                  onChange={(e) => setCommentPost(e.target.value)}
+                />
+              )}
+              {isComment && <ComButton onClick={handleComment}>Post</ComButton>}
+              <CommentWrapper>
+                {comments?.map((item, index) => {
+                  if (comments?.length === index + 1) {
+                    return (
+                      <div key={item._id} ref={lastComment}>
+                        <Comment item={item} />
+                      </div>
+                    );
+                  } else {
+                    return <Comment key={item._id} item={item} />;
+                  }
+                })}
+                {isLoading && (
+                  <p style={{ textAlign: "center" }}>
+                    <Loading />
                   </p>
-                </MiscDiv>
-              </RightAction>
-            </ActionWrapper>
+                )}
+                {isError && (
+                  <p
+                    style={{
+                      textAlign: "center",
+                      color: "red",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Something went wrong!
+                  </p>
+                )}
+                {isEnd && comments.length !== 0 && (
+                  <p
+                    style={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "12px",
+                    }}
+                  >
+                    END OF COMMENT
+                  </p>
+                )}
+              </CommentWrapper>
+            </LetterContainer>
+          </Wrapper>
+        )}
 
-            {user && (
-              <TextComment
-                placeholder='Add your comment here...'
-                onFocus={() => {
-                  setIsComment(true);
-                }}
-                isComment={isComment}
-                value={commentPost}
-                onChange={(e) => setCommentPost(e.target.value)}
-              />
-            )}
-            {isComment && <ComButton onClick={handleComment}>Post</ComButton>}
-            <CommentWrapper>
-              {comments?.map((item, index) => {
-                if (comments?.length === index + 1) {
-                  return (
-                    <div key={item._id} ref={lastComment}>
-                      <Comment item={item} />
-                    </div>
-                  );
-                } else {
-                  return <Comment key={item._id} item={item} />;
-                }
-              })}
-              {isLoading && (
-                <p style={{ textAlign: "center" }}>
-                  <Loading />
-                </p>
-              )}
-              {isError && (
-                <p
-                  style={{
-                    textAlign: "center",
-                    color: "red",
-                    fontSize: "14px",
-                  }}
-                >
-                  Something went wrong!
-                </p>
-              )}
-              {isEnd && comments.length !== 0 && (
-                <p
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    fontSize: "12px",
-                  }}
-                >
-                  END OF COMMENT
-                </p>
-              )}
-            </CommentWrapper>
-          </LetterContainer>
-        </Wrapper>
         <ModalReport
           show={showReport}
           close={handleClose}
