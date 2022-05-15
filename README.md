@@ -1,6 +1,8 @@
 # Lastword
 
 A Letter-based social media web app. Inspired by Book: The Letters of Vincent Van Gogh.
+Demo: https://lastword.herokuapp.com/
+(The email verification only works on local machine)
 
 # Description
 
