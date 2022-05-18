@@ -199,6 +199,7 @@ const SingleLetter = () => {
                       "Like"
                     )}
                   </Button>
+
                   <Status>
                     {totalLike} Likes, {totalComment} Comments
                   </Status>
@@ -432,9 +433,9 @@ const CommentWrapper = styled.div``;
 
 const TextComment = styled.textarea`
   margin-top: 10px;
-  width: 97%;
+  width: 100%;
   padding: 8px;
-  height: ${(props) => (props.isComment ? "60px" : "20px")};
+  height: ${(props) => (props.isComment ? "60px" : "40px")};
   resize: none;
   background-color: #f0f0f0;
   border: none;
